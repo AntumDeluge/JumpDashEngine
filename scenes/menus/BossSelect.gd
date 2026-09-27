@@ -179,7 +179,7 @@ func _process(_delta):
 				set_process(false)
 				# disable scanlines in case bonus level beaten
 				$Boss_Layer/scanlines/Mid_Mid.hide()
-				_eye_location.play("Determined")
+#				_eye_location.play("Determined")
 				$AnimationPlayer.play("Flash_Screen")
 				$Boss_Select.play()
 			elif beat_level_count == 8 and selected_middle == "dw":
@@ -188,7 +188,7 @@ func _process(_delta):
 				$SelectedMenuObject.hide()
 				$shop_icon.hide()
 				set_process(false)
-				_eye_location.play("Determined")
+#				_eye_location.play("Determined")
 				$AnimationPlayer.play("Flash_Screen")
 				$Boss_Select.play()
 				pass
