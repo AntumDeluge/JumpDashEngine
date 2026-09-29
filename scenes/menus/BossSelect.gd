@@ -36,13 +36,13 @@ var selected_middle = ""
 # tables containing stage ID & path to stage scene
 const STAGES = {
 	POS.TL: {"id": "cold_man", "scene": "res://game/scene/stage/Cold_Man.tscn"},
-	POS.TM: {"id": "example_stage", "scene": "res://scenes/stages/levels/example_1/example_1.tscn"},
+	POS.TM: {"id": "pirate_man", "scene": "res://game/scene/stage/Pirate_Man.tscn"},
 	POS.TR: {"id": "burner_man", "scene": "res://game/scene/stage/Burner_Man.tscn"},
 	POS.LM: {"id": "astro_man", "scene": "res://game/scene/stage/Astro_Man.tscn"},
 	POS.MM: null,
 	POS.RM: {"id": "dynamo_man", "scene": "res://game/scene/stage/Dynamo_Man.tscn"},
 	POS.BL: {"id": "ground_man", "scene": "res://game/scene/stage/Ground_Man.tscn"},
-	POS.BM: null,
+	POS.BM: {"id": "tengu_man", "scene": "res://game/scene/stage/Tengu_Man.tscn"},
 	POS.BR: {"id": "magic_man", "scene": "res://game/scene/stage/Magic_Man.tscn"},
 	"bonus": null
 }
