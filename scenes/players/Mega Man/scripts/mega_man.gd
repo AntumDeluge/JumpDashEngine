@@ -55,6 +55,9 @@ var explode_on_death := true
 var ladder: StaticBody2D
 var gravity_direction: Vector2 = Vector2.DOWN
 
+# value used to dermine if player should die from falling into a pit instead of transitioning to section below
+var is_in_pit: bool = false
+
 var gravity: float setget , _get_player_gravity
 var walking_speed:float setget, _get_player_walking_speed
 var climb_speed:float setget, _get_player_climbing_speed
