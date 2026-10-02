@@ -111,10 +111,19 @@ func _make_bubble():
 func _on_water_entered(body):
 	if body is LadderController:
 		player = body
+		var should_splash = true
+		if not player.get_tree().current_scene.is_player_ready_for_first_input:
+			# don't create splash if player hasn't teleported in yet
+			should_splash = false
+
 		if not PlayerValues.player.is_in_water:
 			PlayerValues.player.is_in_water = true
-			_make_splash()
-			$BubbleTimer.start()
+			if should_splash:
+				_make_splash()
+				$BubbleTimer.start()
+			else:
+				# prevent showing bubbles until player has teleported in
+				$BubbleTimer.start(2.0)
 		PlayerValues.player.number_of_in_contact_water += 1
 	if body.is_in_group("PlayerWeapons") and (body.is_in_group("CoalIgnitionP1")or body.is_in_group("CoalIgnitionFireP1")) and is_cold_water:
 		is_cold_water = false
