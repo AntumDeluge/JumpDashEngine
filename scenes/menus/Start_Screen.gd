@@ -12,7 +12,8 @@ func _ready():
 
 	$Audio/BackgroundMusic.play()
 	$Labels/MenuContainer.hide()
-	$Labels/Version.text = ProjectSettings.get_setting("application/config/version") if ProjectSettings.get_setting("application/config/version") != "" else "0.0.0"
+	#$Labels/Version.text = ProjectSettings.get_setting("application/config/version") if ProjectSettings.get_setting("application/config/version") != "" else "0.0.0"
+	$Labels/Version.text = GameConfig.version
 	#$Sprites/megaman_title_text.play("fade_in")
 
 	$Labels/Version.show()
