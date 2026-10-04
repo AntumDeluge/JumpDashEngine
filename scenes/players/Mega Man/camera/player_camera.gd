@@ -40,6 +40,16 @@ onready var _base_height: int = Config.DEFAULT_WINDOW_HEIGHT
 
 #the highest i was able to get was 193.8
 onready var _death_distance: float = 196.00
+
+enum ScrollDir {
+	NONE = 0,
+	H,
+	V
+}
+var scroll_direction: int = ScrollDir.NONE
+var scroll_rate: float = 0.0
+
+
 #-------------------------------------------------
 #      Processes
 #-------------------------------------------------
@@ -56,7 +66,16 @@ func _physics_process(_delta: float) -> void:
 		if not PlayerValues.player.is_dead and not PlayerValues.is_teleporting:
 			set_physics_process(false)
 			PlayerValues.player.in_pit()
-	global_position =  _camera_target.global_position
+	if scroll_direction and scroll_rate:
+		# player is in auto-scroll section
+		# FIXME: player is pushed through collision instead of dying
+		# FIXME: camera starts scrolling before teleport-in after death
+		if scroll_direction == ScrollDir.H:
+			global_position.x += scroll_rate
+		else:
+			global_position.x -= scroll_rate
+	else:
+		global_position =  _camera_target.global_position
 	if PlayerValues.is_teleporting and global_position == _camera_target.global_position:
 		frame_count_after_teleport+= 1
 		if frame_count_after_teleport >= TP_RESET_FRAMES:
@@ -288,3 +307,10 @@ func on_restarted() -> void:
 
 func reinit_weapon_wheel():
 	$Weapon_Wheel.initialize_weapon_wheel()
+
+func set_scroll(dir: int, rate: float):
+	scroll_direction = dir
+	scroll_rate = rate
+
+func stop_scroll():
+	set_scroll(0, 0)
