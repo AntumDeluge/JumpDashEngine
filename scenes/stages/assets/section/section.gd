@@ -36,6 +36,10 @@ var add_boss_door_offset: float
 
 var active: bool
 export(bool) var seal_on_screen_leave:= false
+
+export(int, "None", "Horizontal", "Vertical") var scroll_direction = 0
+export(float) var scroll_rate;
+
 #-------------------------------------------------
 #      Processes
 #-------------------------------------------------
@@ -162,6 +166,10 @@ func on_body_entered(body: Node) -> void:
 		if (body as Player).is_in_pit:
 			# player dies instead of transitioning to section below
 			return
+
+		if scroll_direction and scroll_rate:
+			cam.set_scroll(scroll_direction, scroll_rate)
+
 		emit_signal("transition_entered", self)
 		emit_signal("transmit_section_info",self)
 
@@ -208,12 +216,19 @@ func _on_body_exited(body: Node) -> void:
 
 		if seal_on_screen_leave:
 			$BlockingWall.set_collision_layer_bit(Bitmask.stage, true)
+
+		if scroll_direction and scroll_rate:
+			Physics.current_stage.current_camera.stop_scroll()
+
 		emit_signal("transition_exited", self)
 
 	#when you die set all of the blocking walls to free.
 func on_restarted() -> void:
 	if seal_on_screen_leave:
 		$BlockingWall.set_collision_layer_bit(Bitmask.stage, false)
+
+	if scroll_direction and scroll_rate:
+		Physics.current_stage.current_camera.set_scroll(scroll_direction, scroll_rate)
 
 func _on_midboss_death():
 	emit_signal("signal_midboss_death")
