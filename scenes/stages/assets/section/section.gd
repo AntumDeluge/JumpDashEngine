@@ -159,6 +159,9 @@ func on_body_entered(body: Node) -> void:
 			return
 
 		add_boss_door_offset = false
+		if (body as Player).is_in_pit:
+			# player dies instead of transitioning to section below
+			return
 		emit_signal("transition_entered", self)
 		emit_signal("transmit_section_info",self)
 
