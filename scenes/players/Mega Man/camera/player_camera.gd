@@ -47,7 +47,9 @@ enum ScrollDir {
 	V
 }
 var scroll_direction: int = ScrollDir.NONE
-var scroll_rate: float = 0.0
+var scroll_rate_px: int = 0
+var scroll_delay_ms: int = 0
+var scroll_elapsed_ms: int = 0
 
 
 #-------------------------------------------------
@@ -66,14 +68,19 @@ func _physics_process(_delta: float) -> void:
 		if not PlayerValues.player.is_dead and not PlayerValues.is_teleporting:
 			set_physics_process(false)
 			PlayerValues.player.in_pit()
-	if scroll_direction and scroll_rate:
+	if scroll_direction and scroll_rate_px and scroll_delay_ms:
 		# player is in auto-scroll section
 		# FIXME: player is pushed through collision instead of dying
 		# FIXME: camera starts scrolling before teleport-in after death
-		if scroll_direction == ScrollDir.H:
-			global_position.x += scroll_rate
-		else:
-			global_position.x -= scroll_rate
+		scroll_elapsed_ms += _delta * 1000
+		if scroll_elapsed_ms >= scroll_delay_ms:
+			# reset elapsed time since last scroll
+			scroll_elapsed_ms = 0
+			# scroll camera
+			if scroll_direction == ScrollDir.H:
+				global_position.x += scroll_rate_px
+			else:
+				global_position.x -= scroll_rate_px
 	else:
 		global_position =  _camera_target.global_position
 	if PlayerValues.is_teleporting and global_position == _camera_target.global_position:
@@ -308,9 +315,14 @@ func on_restarted() -> void:
 func reinit_weapon_wheel():
 	$Weapon_Wheel.initialize_weapon_wheel()
 
-func set_scroll(dir: int, rate: float):
+func set_scroll(dir: int, rate_px: int, delay_ms: int):
+	if dir < ScrollDir.NONE or dir > ScrollDir.V:
+		printerr("Invalid scroll direction: %s" % dir)
+		return
+
 	scroll_direction = dir
-	scroll_rate = rate
+	scroll_rate_px = rate_px
+	scroll_delay_ms = delay_ms
 
 func stop_scroll():
-	set_scroll(0, 0)
+	set_scroll(0, 0, 0)
