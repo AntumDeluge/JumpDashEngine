@@ -51,7 +51,7 @@ var is_player_new_to_game:bool = true
 var high_endless:int = 0
 var high_rogue:int = 0
 var is_rogue_unlocked:bool = false
-var pause_on_health_pickup:bool = false
+var pause_on_health_pickup:bool = true
 var skip_boss_dialog:bool = false
 var midgame_cutscene_seen:bool = false
 var all_robot_cutscene_seen:bool = false
@@ -158,7 +158,7 @@ func load_config_from_file():
 		player_id = global_config.player_id if global_config.has("player_id") else v4()
 		is_player_new_to_game = global_config.is_player_new_to_game if global_config.has("is_player_new_to_game") else true
 		show_filters = global_config.show_filters if global_config.has("show_filters") else true
-		pause_on_health_pickup = global_config.pause_on_health_pickup if global_config.has("pause_on_health_pickup") else false
+		#pause_on_health_pickup = global_config.pause_on_health_pickup if global_config.has("pause_on_health_pickup") else false
 		skip_boss_dialog = global_config.skip_boss_dialog if global_config.has("skip_boss_dialog") else false
 		midgame_cutscene_seen =  global_config.midgame_cutscene_seen if global_config.has("midgame_cutscene_seen") else false
 		all_robot_cutscene_seen = global_config.all_robot_cutscene_seen if global_config.has("all_robot_cutscene_seen") else false
