@@ -14,9 +14,9 @@ extends Position2D
 #-------------------------------------------------
 
 export(PackedScene) var packed_scene_ref: PackedScene setget set_packed_scene_ref
+export(int) var spawn_count_max := -1
 
 var _can_respawn := true
-var spawn_count_max := -1
 var spawn_timer := 0.0
 var spawn_info := {}
 
