@@ -1,6 +1,6 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
-[ext_resource path="res://assets/images/sprites/enemies/explosions/small_explosion.png" type="Texture" id=1]
+[ext_resource path="res://game/data/image/sprite/small_explosion.png" type="Texture" id=1]
 [ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=2]
 [ext_resource path="res://scenes/enemies/base/scripts/state_machine.gd" type="Script" id=3]
 [ext_resource path="res://scenes/enemies/base/enemy_base.gd" type="Script" id=4]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/images/sprites/enemies/capture_explosion.png" type="Texture" id=14]
 [ext_resource path="res://assets/audio/environment/challenge_complete.ogg" type="AudioStream" id=15]
 [ext_resource path="res://assets/images/sprites/enemies/glitch_explosion_small.png" type="Texture" id=16]
+[ext_resource path="res://assets/images/sprites/enemies/explosions/small_explosion.png" type="Texture" id=17]
 [ext_resource path="res://assets/images/sprites/enemies/explosions/big_explosion.png" type="Texture" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -304,37 +305,13 @@ tracks/0/keys = {
 "update": 1,
 "values": [ false ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("SpriteExplosion:visible")
+tracks/1/type = "method"
+tracks/1/path = NodePath("StateMachine/Death")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.24 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("SpriteExplosion:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5 ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("StateMachine/Death")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0.04 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -342,49 +319,13 @@ tracks/3/keys = {
 "method": "_drop_item"
 } ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("SpriteExplosion:texture")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 1 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("SpriteExplosion:hframes")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 6 ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteExplosion:vframes")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-tracks/7/type = "audio"
-tracks/7/path = NodePath("Audio/Explosion")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
+tracks/2/type = "audio"
+tracks/2/path = NodePath("Audio/Explosion")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -392,17 +333,41 @@ tracks/7/keys = {
 } ],
 "times": PoolRealArray( 0 )
 }
-tracks/8/type = "value"
-tracks/8/path = NodePath("AnimatedSprite:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimatedSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("SpriteExplosionClassic:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("SpriteExplosionClassic:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -655,6 +620,66 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpriteExplosionClassic:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpriteExplosionClassic:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimatedSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("SpriteExplosion:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "Snow_Death"
@@ -779,6 +804,7 @@ z_index = 2
 collision_layer = 81920
 collision_mask = 270626
 script = ExtResource( 4 )
+unique_id = "1085657"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -799,10 +825,14 @@ light_mask = 2
 [node name="SpriteExplosion" type="Sprite" parent="."]
 visible = false
 light_mask = 2
-texture = ExtResource( 14 )
-hframes = 4
-vframes = 2
-frame = 7
+texture = ExtResource( 17 )
+hframes = 6
+frame = 5
+
+[node name="SpriteExplosionClassic" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 1 )
+hframes = 5
 
 [node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 script = ExtResource( 2 )
@@ -825,7 +855,7 @@ stream = ExtResource( 5 )
 bus = "Sound Effects"
 
 [node name="Explosion" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource( 15 )
+stream = ExtResource( 5 )
 bus = "Sound Effects"
 
 [node name="StateMachine" type="Node" parent="."]
