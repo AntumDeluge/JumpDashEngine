@@ -99,6 +99,7 @@ func _init() -> void:
 	pause_mode = PAUSE_MODE_STOP
 	start_dir = Vector2.RIGHT
 	stage_exited = false
+	PlayerValues.active_in_stage = false
 
 func _ready() -> void:
 	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_VIEWPORT,SceneTree.STRETCH_ASPECT_KEEP,Vector2(256,224),1.0)
@@ -256,6 +257,7 @@ func _get_configuration_warning() -> String:
 		return ""
 
 func _restart() -> void:
+	PlayerValues.active_in_stage = false
 	restarting = true
 	if did_restart:
 		did_restart = false
@@ -505,6 +507,7 @@ func _on_boss_died() -> void:
 	emit_signal("stage_cleared")
 
 func _on_stage_exited() -> void:
+	PlayerValues.active_in_stage = false
 	stage_exited = true
 	_fade_effect.fade_out(FADE_OUT_DURATION)
 
