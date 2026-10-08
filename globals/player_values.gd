@@ -158,6 +158,9 @@ var obtained_weapons = {
 	"11": rush_jet  #utility B
 }
 
+# flag to check if enemy logic should be processed
+var active_in_stage = false
+
 func setup_new_default_play_params():
 	reset_all_params_to_default()
 	set_buster_only_weapon()

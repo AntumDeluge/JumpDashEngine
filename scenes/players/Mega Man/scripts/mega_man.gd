@@ -401,6 +401,7 @@ func on_ready() -> void:
 	accept_inputs()
 	is_dead = false
 	explode_on_death = true
+	PlayerValues.active_in_stage = true
 
 func on_restarted():
 	has_i_frames = false
