@@ -23,3 +23,7 @@ func _update(delta: float) -> void:
 #warning-ignore:unused_argument
 func _on_animation_finished(anim_name: String) -> void:
 	return
+
+func logic(delta: float, entity: KinematicBody2D, state_machine: StateMachine):
+	# Define in subclasses. Call from `_physics_process` method only if all requirements met.
+	pass
