@@ -17,7 +17,7 @@ var temp_lock = false
 var locked := false setget locked_collision
 var _section_1: Section
 var _section_2: Section
-var _player: Player
+var player: Player
 var _reset_lock := true
 var is_animating = false
 
@@ -93,12 +93,12 @@ func on_exited(body: PhysicsBody2D):
 	assert(false, "Implementing classes must define method `on_exited`")
 
 func on_animation_finished(anim_name: String) -> void:
-	if _player and is_door_open():
-		if not _player.is_dead:
+	if player and is_door_open():
+		if not player.is_dead:
 			if _section_1.active:
-				_section_2.on_body_entered_for_boss_doors(_player, self)
+				_section_2.on_body_entered_for_boss_doors(player, self)
 			else:
-				_section_1.on_body_entered_for_boss_doors(_player, self)
+				_section_1.on_body_entered_for_boss_doors(player, self)
 
 func on_locking_enemy_dead():
 	temp_lock = false

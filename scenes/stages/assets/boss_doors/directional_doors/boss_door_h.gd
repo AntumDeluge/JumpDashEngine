@@ -8,7 +8,7 @@ extends "boss_door_base.gd"
 func on_entered(body: PhysicsBody2D) -> void:
 	if not body is Player or (locked or temp_lock):
 		return
-	_player = body as Player
+	self.player = body as Player
 	Physics.is_in_pausible_state = false
 	open_door()
 	open()
@@ -19,7 +19,7 @@ func on_exited(body: PhysicsBody2D) -> void:
 		if is_door_open():
 			close()
 			locked = true
-			_player = null
+			self.player = null
 			return
 	if is_door_open():
 		close()
