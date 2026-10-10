@@ -8,8 +8,8 @@ func _physics_process(delta):
 				return
 			else:
 				set_physics_process(false)
-				_player = body as Player
-				_player.boss_door_transition = true
+				self.player = body as Player
+				self.player.boss_door_transition = true
 				open_door()
 				open()
 
@@ -27,8 +27,8 @@ func on_restarted() -> void:
 func on_entered(body: PhysicsBody2D) -> void:
 	if not body is Player or (locked or temp_lock):
 		return
-	_player = body as Player
-	_player.boss_door_transition = true
+	self.player = body as Player
+	self.player.boss_door_transition = true
 	Physics.is_in_pausible_state = false
 	open_door()
 	open()
@@ -42,8 +42,8 @@ func on_exited(body: PhysicsBody2D) -> void:
 	else:
 		if not body is Player or (locked):
 			return
-		_player.boss_door_transition = false
-		_player = null
+		self.player.boss_door_transition = false
+		self.player = null
 		if is_door_open():
 			close()
 			locked = true
