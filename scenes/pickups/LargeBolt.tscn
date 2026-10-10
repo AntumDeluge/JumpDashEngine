@@ -6,10 +6,10 @@
 [ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 7, 5.75 )
+extents = Vector2( 7, 6 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 7, 5 )
+extents = Vector2( 7, 6 )
 
 [node name="LargeBolt" type="KinematicBody2D" groups=["item_bolt"]]
 light_mask = 2
@@ -26,7 +26,7 @@ frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 0, 2.25 )
+position = Vector2( 0, 1 )
 shape = SubResource( 4 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
@@ -34,12 +34,12 @@ stream = ExtResource( 1 )
 bus = "Sound Effects"
 
 [node name="PickupDetector" type="Area2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupDetector"]
-visible = false
-position = Vector2( 0, 3 )
+position = Vector2( 0, 1 )
 shape = SubResource( 5 )
 
 [node name="DespawnTimerNormal" type="Timer" parent="."]
@@ -50,8 +50,8 @@ wait_time = 1.8
 
 [node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 visible = false
-position = Vector2( -4.76837e-07, 2 )
-scale = Vector2( 0.8, 0.6 )
+position = Vector2( -4.76837e-07, 1.5 )
+scale = Vector2( 0.8, 0.65 )
 script = ExtResource( 4 )
 
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
