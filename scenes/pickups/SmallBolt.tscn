@@ -6,10 +6,10 @@
 [ext_resource path="res://game/data/image/sprite/item/screws.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 3, 3.5 )
+extents = Vector2( 4, 4 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 3, 3 )
+extents = Vector2( 4, 4 )
 
 [node name="SmallBolt" type="KinematicBody2D" groups=["item_bolt"]]
 light_mask = 2
@@ -25,7 +25,8 @@ hframes = 4
 vframes = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 2.5 )
+visible = false
+position = Vector2( 0, 3 )
 shape = SubResource( 4 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
@@ -33,11 +34,11 @@ stream = ExtResource( 1 )
 bus = "Sound Effects"
 
 [node name="PickupDetector" type="Area2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupDetector"]
-visible = false
 position = Vector2( 0, 3 )
 shape = SubResource( 5 )
 
@@ -49,7 +50,7 @@ wait_time = 1.8
 
 [node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 visible = false
-position = Vector2( -2.38419e-07, 2.5 )
+position = Vector2( -2.38419e-07, 3.5 )
 scale = Vector2( 0.4, 0.45 )
 script = ExtResource( 4 )
 

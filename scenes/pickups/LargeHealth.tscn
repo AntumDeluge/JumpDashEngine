@@ -52,6 +52,7 @@ script = ExtResource( 1 )
 item_type = "health"
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 1 )
 texture = ExtResource( 5 )
 hframes = 8
 vframes = 13
@@ -70,11 +71,11 @@ stream = ExtResource( 3 )
 bus = "Sound Effects"
 
 [node name="PickupDetector" type="Area2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupDetector"]
-visible = false
 shape = SubResource( 4 )
 
 [node name="DespawnNormal" type="Timer" parent="."]
@@ -85,8 +86,8 @@ wait_time = 1.8
 
 [node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 visible = false
-position = Vector2( 0, -1.49012e-07 )
-scale = Vector2( 0.8, 0.8 )
+position = Vector2( 0, 0.500001 )
+scale = Vector2( 0.8, 0.85 )
 script = ExtResource( 4 )
 
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
