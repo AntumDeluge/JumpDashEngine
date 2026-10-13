@@ -4,6 +4,7 @@ extends Node2D
 
 const MENU = "res://scenes/menus/existing_game_menu/existing_game_menu.tscn"
 const LETTER_TEXTURE_MASK: String = "res://assets/images/sprites/pickups/letters/letter_%s.png"
+const intro_scene_path = "res://game/scene/boss_intro.tscn"
 
 onready var positions = [
 	#top row
@@ -335,7 +336,7 @@ func loadStage():
 		PlayerValues.boss_display_name = stage.id
 		PlayerValues.refill_everything()
 		if not PlayerValues.beat_levels[stage.id]:
-			get_tree().change_scene("res://scenes/menus/boss_selected_display/boss_selected_animation.tscn")
+			get_tree().change_scene(intro_scene_path)
 		else:
 			get_tree().change_scene(stage.scene)
 	elif selected == POS.MM:
@@ -350,7 +351,7 @@ func loadStage():
 				PlayerValues.boss_display_name = STAGES.bonus.id
 				PlayerValues.refill_everything()
 				if not PlayerValues.beat_levels[STAGES.bonus.id]:
-					get_tree().change_scene("res://scenes/menus/boss_selected_display/boss_selected_animation.tscn")
+					get_tree().change_scene(intro_scene_path)
 				else:
 					get_tree().change_scene(STAGES.bonus.scene)
 	elif is_shop_highlighted:
