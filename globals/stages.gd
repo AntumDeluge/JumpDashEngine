@@ -80,8 +80,8 @@ var time_trial_first_input:bool = false
 var best_time_trial_world_record:float = 999999.0
 
 onready var _fade_effect := $"UI/FadeEffects"
-onready var _health_bar := $"UI/MarginContainer/HealthBar"
-onready var _weapon_bar := $"UI/MarginContainer/HealthBar/WeaponBar"
+onready var _health_bar := get_bar("health")
+onready var _weapon_bar := get_bar("weapon")
 onready var _pause := $"UI/PauseMenu"
 onready var _tt
 #onready var _gui_game_over := $"GUI/GameOver"
@@ -624,3 +624,8 @@ func submit_to_timetrial_discord_server(time:float, level_name:String):
 
 func get_record_time_trial(time):
 	best_time_trial_world_record = time
+
+func get_bar(name: String) -> Control:
+	name = name.substr(0, 1).to_upper() + name.substr(1, name.length() - 1).to_lower()
+	var node_path = "UI/EnergyBars/%s" % name
+	return get_node_or_null(node_path) as Control

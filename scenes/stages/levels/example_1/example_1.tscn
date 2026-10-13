@@ -9,7 +9,7 @@
 [ext_resource path="res://scenes/players/Mega Man/camera/player_camera.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/stages/effects/fade_effect.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/players/Mega Man/animations/weapon_overhead_icon.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/HUD/energy-bar/energy-bar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/HUD/energy_bars/energy_bars.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/menus/pause_menu/pause_menu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/players/Mega Man/Megaman.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/enemies/tellys/mm2_telly/telly.tscn" type="PackedScene" id=13]
@@ -2807,31 +2807,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 246.0
-margin_bottom = 214.0
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="HealthBar" parent="UI/MarginContainer" instance=ExtResource( 10 )]
-visible = false
-margin_right = 236.0
-margin_bottom = 204.0
-
-[node name="WeaponBar" parent="UI/MarginContainer/HealthBar" instance=ExtResource( 10 )]
-visible = false
-margin_left = 8.0
-margin_right = 8.0
-
-[node name="BossBar" parent="UI/MarginContainer/HealthBar" instance=ExtResource( 10 )]
-visible = false
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -8.0
-margin_right = -8.0
+[node name="EnergyBars" parent="UI" instance=ExtResource( 10 )]
 
 [node name="FadeEffects" parent="UI" instance=ExtResource( 8 )]
 visible = false
