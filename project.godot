@@ -143,6 +143,7 @@ PlayerValues="*res://globals/player_values.gd"
 Bitmask="*res://globals/Bitmask.gd"
 Score="*res://globals/score_values.gd"
 LevelValues="*res://globals/LevelValues.gd"
+Game="*res://game/script/Game.gd"
 
 [debug]
 
