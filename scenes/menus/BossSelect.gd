@@ -82,7 +82,8 @@ func _ready():
 	$Animate_Shop_Icon.play("ShopFlash")
 	PlayerValues.player = null
 	PlayerValues.last_played_level = ""
-	$CanvasLayer/AnimationPlayer.play("Open_Transition")
+#	$CanvasLayer/AnimationPlayer.play("Open_Transition")
+	$CanvasLayer/AnimationPlayer.play("fade-in")
 	##Sets up the session Timer
 	PlayerValues.start_game_timer()
 	##updates the global timer
@@ -160,7 +161,7 @@ func _process(_delta):
 	if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("action_jump_p1")) and is_accepting_inputs:
 		if (selected in STAGES and STAGES[selected] != null) or is_shop_highlighted:
 			is_accepting_inputs = false
-			$ColorRect.show()
+#			$ColorRect.show()
 			$SelectedMenuObject.hide()
 			$shop_icon.hide()
 			set_process(false)
@@ -169,29 +170,32 @@ func _process(_delta):
 				_eye_location.play("Middle")
 			else:
 				_eye_location.play("Happy")
-			$AnimationPlayer.play("Flash_Screen")
+#			$AnimationPlayer.play("Flash_Screen")
 			$Boss_Select.play()
+			$StageSelectFlash.play("flash")
 		elif selected == POS.MM:
 			if PlayerValues.is_serenade_unlocked and selected_middle == "s":
 				is_accepting_inputs = false
-				$ColorRect.show()
+#				$ColorRect.show()
 				$SelectedMenuObject.hide()
 				$shop_icon.hide()
 				set_process(false)
 				# disable scanlines in case bonus level beaten
 				$Boss_Layer/scanlines/Mid_Mid.hide()
 #				_eye_location.play("Determined")
-				$AnimationPlayer.play("Flash_Screen")
+#				$AnimationPlayer.play("Flash_Screen")
 				$Boss_Select.play()
+				$StageSelectFlash.play("flash")
 			elif beat_level_count == 8 and selected_middle == "dw":
 				is_accepting_inputs = false
-				$ColorRect.show()
+#				$ColorRect.show()
 				$SelectedMenuObject.hide()
 				$shop_icon.hide()
 				set_process(false)
 #				_eye_location.play("Determined")
-				$AnimationPlayer.play("Flash_Screen")
+#				$AnimationPlayer.play("Flash_Screen")
 				$Boss_Select.play()
+				$StageSelectFlash.play("flash")
 				pass
 			else:
 				$Error.play()
@@ -327,8 +331,8 @@ func hide_beat_bosses():
 		scanlines.show()
 
 func loadStage():
-	$CanvasLayer/AnimationPlayer.play("Close_Transition")
-	yield($CanvasLayer/AnimationPlayer,"animation_finished")
+#	$CanvasLayer/AnimationPlayer.play("Close_Transition")
+#	yield($CanvasLayer/AnimationPlayer,"animation_finished")
 
 	var stage = STAGES[selected] if selected in STAGES else null
 	if stage:
@@ -359,5 +363,11 @@ func loadStage():
 		get_tree().change_scene(MENU)
 
 func _on_transition_animation(anim_name):
-	if anim_name == "Open_Transition":
+	if anim_name == "Open_Transition" or anim_name == "fade-in":
 		is_accepting_inputs = true
+#	elif anim_name == "fade-out":
+#		loadStage()
+
+#func _on_flash_animation_finished(anim_name: String):
+#	if anim_name == "flash":
+#		$CanvasLayer/AnimationPlayer.play("fade-out")

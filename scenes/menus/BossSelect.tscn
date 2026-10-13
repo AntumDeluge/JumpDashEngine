@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=81 format=2]
 
 [ext_resource path="res://game/data/image/menu/stage_select.png" type="Texture" id=1]
 [ext_resource path="res://game/data/image/portrait/ground_man.png" type="Texture" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://assets/images/sprites/menus/boss_icons/serenade.png" type="Texture" id=25]
 [ext_resource path="res://assets/images/sprites/menus/beat_bosses/serenade.png" type="Texture" id=26]
 [ext_resource path="res://game/data/image/portrait/dynamo_man.png" type="Texture" id=27]
+[ext_resource path="res://game/data/image/menu/stage_select_flash.png" type="Texture" id=28]
 [ext_resource path="res://assets/images/sprites/menus/arrow_right_full_menu.png" type="Texture" id=29]
 [ext_resource path="res://assets/images/sprites/menus/arrow_left_full_menu.png" type="Texture" id=30]
 [ext_resource path="res://assets/images/sprites/menus/scan_lines/scanlines.tres" type="Texture" id=33]
@@ -289,6 +290,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Boss_Layer/Background/Flash:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "Stage_Select"
@@ -316,6 +329,32 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=46]
+resource_name = "flash"
+length = 1.04
+tracks/0/type = "value"
+tracks/0/path = NodePath("Boss_Layer/Background/Flash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.13, 0.26, 0.39, 0.52, 0.65, 0.78, 0.91 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false ]
+}
+tracks/1/type = "animation"
+tracks/1/path = NodePath("CanvasLayer/AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": PoolStringArray( "fade-out" ),
+"times": PoolRealArray( 0.91 )
 }
 
 [sub_resource type="Animation" id=7]
@@ -593,6 +632,64 @@ tracks/1/keys = {
 "update": 0,
 "values": [ true ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("ColorRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=47]
+resource_name = "fade-in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.29 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=48]
+resource_name = "fade-out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.29 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "loadStage"
+} ]
+}
 
 [sub_resource type="AtlasTexture" id=28]
 atlas = ExtResource( 30 )
@@ -686,6 +783,7 @@ anims/Shine_Shop = SubResource( 4 )
 [node name="StageSelectFlash" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 5 )
 anims/Stage_Select = SubResource( 6 )
+anims/flash = SubResource( 46 )
 
 [node name="shop_icon" type="Sprite" parent="."]
 position = Vector2( 127, 219 )
@@ -713,6 +811,12 @@ texture = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Flash" type="TextureRect" parent="Boss_Layer/Background"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 28 )
 
 [node name="BossLabels" type="Control" parent="Boss_Layer"]
 anchor_right = 1.0
@@ -1097,6 +1201,8 @@ anchor_bottom = 1.0
 anims/Close_Transition = SubResource( 21 )
 anims/Open_Transition = SubResource( 22 )
 anims/RESET = SubResource( 23 )
+anims/fade-in = SubResource( 47 )
+anims/fade-out = SubResource( 48 )
 
 [node name="left_arrow" type="AnimatedSprite" parent="."]
 position = Vector2( 101, 144 )
