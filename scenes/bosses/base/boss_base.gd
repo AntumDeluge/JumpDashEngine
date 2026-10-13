@@ -161,7 +161,7 @@ func on_boss_entered() -> void:
 	$CharacterSprites.show()
 	_hit_points = 0
 	yield(get_tree(),"idle_frame")
-	life_bar = Physics.current_stage.get_node("UI/MarginContainer/HealthBar/BossBar")
+	life_bar = Physics.current_stage.get_bar("boss")
 	life_bar.color = boss_color
 	life_bar.color_inside = boss_color_inside
 	_hit_points = PlayerValues.MAX_HEALTH

@@ -311,9 +311,10 @@ func die():
 		emit_signal("died")
 		Physics.is_in_pausible_state = false
 		boss_door_transition = false
-		Physics.current_stage.get_node("UI/MarginContainer/HealthBar/BossBar").hide()
-		if Physics.current_stage.get_node_or_null("UI/MarginContainer/HealthBar/BossBar2") != null:
-			Physics.current_stage.get_node("UI/MarginContainer/HealthBar/BossBar2").hide()
+		for bar_name in ["boss", "boss2"]:
+			var bar_temp = Physics.current_stage.get_bar(bar_name)
+			if bar_temp:
+				bar_temp.hide()
 		set_physics_process(false)
 
 func _register_foot_step():
