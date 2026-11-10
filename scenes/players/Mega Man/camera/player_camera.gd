@@ -69,18 +69,19 @@ func _physics_process(_delta: float) -> void:
 			set_physics_process(false)
 			PlayerValues.player.in_pit()
 	if scroll_direction and scroll_rate_px and scroll_delay_ms:
-		# player is in auto-scroll section
-		# FIXME: player is pushed through collision instead of dying
-		# FIXME: camera starts scrolling before teleport-in after death
-		scroll_elapsed_ms += _delta * 1000
-		if scroll_elapsed_ms >= scroll_delay_ms:
-			# reset elapsed time since last scroll
-			scroll_elapsed_ms = 0
-			# scroll camera
-			if scroll_direction == ScrollDir.H:
-				global_position.x += scroll_rate_px
-			else:
-				global_position.x -= scroll_rate_px
+		if not get_tree().paused:
+			# player is in auto-scroll section
+			# FIXME: player is pushed through collision instead of dying
+			# FIXME: camera starts scrolling before teleport-in after death
+			scroll_elapsed_ms += _delta * 1000
+			if scroll_elapsed_ms >= scroll_delay_ms:
+				# reset elapsed time since last scroll
+				scroll_elapsed_ms = 0
+				# scroll camera
+				if scroll_direction == ScrollDir.H:
+					global_position.x += scroll_rate_px
+				else:
+					global_position.x -= scroll_rate_px
 	else:
 		global_position =  _camera_target.global_position
 	if PlayerValues.is_teleporting and global_position == _camera_target.global_position:
