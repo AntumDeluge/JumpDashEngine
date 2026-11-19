@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://game/data/audio/sfx/item_pickup.ogg" type="AudioStream" id=1]
+[ext_resource path="res://game/data/audio/sfx/MM5-item_pickup.ogg" type="AudioStream" id=1]
 [ext_resource path="res://scenes/pickups/Tank.gd" type="Script" id=5]
 [ext_resource path="res://game/data/image/sprite/item/e_tank.png" type="Texture" id=7]
 
