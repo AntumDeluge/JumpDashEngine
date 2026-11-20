@@ -16,5 +16,9 @@ func _enter_tree() -> void:
 		# convert indentation to spaces on save
 		editor_config.set_setting("text_editor/indent/convert_indent_on_save", true)
 
+	if editor_config.has_setting("text_editor/files/trim_trailing_whitespace_on_save"):
+		# trim trailing whitespace on save
+		editor_config.set_setting("text_editor/files/trim_trailing_whitespace_on_save", true)
+
 func _exit_tree():
 	pass
